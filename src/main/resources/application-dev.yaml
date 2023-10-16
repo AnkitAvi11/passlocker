@@ -1,0 +1,19 @@
+spring:
+  # Database configurations
+  datasource:
+    username: { DB_USERNAME }
+    password: { DB_PASSWORD }
+    url: { DB_URL }
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA and Hibernate related configurations
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: on
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+# Other configurations
+SECRET_KEY: { SECRET_KEY }

@@ -1,0 +1,19 @@
+spring:
+  # Database configurations
+  datasource:
+    username: ankit
+    password: ankit
+    url: jdbc:mysql://localhost:3306/passlockertest
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA and Hibernate related configurations
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: on
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+# Other configurations
+SECRET_KEY: demo-test-secret
