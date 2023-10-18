@@ -220,4 +220,27 @@ public class UserService {
 
         throw new BadRequestException("Enter a valid username and email address");
     }
+
+    /**
+     * Function to reset a user's password
+     * @param newPassword   the new password for the user
+     * @param confirmPassword   confirmation for the new password entered by the user
+     */
+    public void resetPassword(String newPassword, String confirmPassword) {
+        if (!newPassword.equals(confirmPassword)) {
+            throw new BadRequestException("Passwords do not match");
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        UserEntity user = this.userRepository.getUserEntityByUsername(username);
+
+        try {
+            user.setPassword(this.passwordEncoder.encode(newPassword));
+            this.userRepository.save(user); //  updates the user data in the database
+        }catch (Exception exception) {
+            throw new BadRequestException(exception.getMessage());
+        }
+    }
 }
